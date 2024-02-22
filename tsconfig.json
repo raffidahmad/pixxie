@@ -1,0 +1,35 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "module": "esnext",
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "example"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "tailwind.config.js"
+  ],
+  "typeRoots": [
+    "node_modules/@types",
+    "types"
+  ]
+}

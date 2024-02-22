@@ -1,0 +1,12 @@
+# don't lint node_modules
+node_modules
+
+# don't lint build output (make sure it's set to your correct build folder name)
+build
+.expo*
+
+# don't lint tailwind stuff
+**/*.css
+
+# Since it is a TS project, ignore JS compiled
+**/*.js*
