@@ -2,9 +2,9 @@ import { router } from 'expo-router';
 import { Text, View } from 'react-native';
 
 import { useSession } from '@/context/ctx';
-import Login from '@/screens/AuthScreens/Login';
+import Signup from '@/screens/AuthScreens/Signup';
 
-const SignInRoute = () => {
+const SignUpRoute = () => {
   const { signIn } = useSession();
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -16,10 +16,10 @@ const SignInRoute = () => {
         //   router.replace('/');
         // }}
         >
-        <Login />
+        <Signup />
       </Text>
     </View>
   );
 }
 
-export default SignInRoute;
+export default SignUpRoute;

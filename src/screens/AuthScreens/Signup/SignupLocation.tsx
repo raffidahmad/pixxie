@@ -64,7 +64,7 @@ const SignupLocation = () => {
           <Text style={LoginStyle.Subtext}>That way your barber will know exactly where to come</Text>
         </View>
 
-      
+        
         {/* 
           <FormInput
             control={control2}

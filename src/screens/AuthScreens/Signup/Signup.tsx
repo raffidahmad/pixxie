@@ -107,7 +107,7 @@ const Signup = () => {
                         <Text style={LoginStyle.Subtext}>Already have an account?</Text>
                       </View>
 
-                      <Link href='/login' style={LoginStyle.google}>
+                      <Link href='/sign-in' style={LoginStyle.google}>
                         <Text style={LoginStyle.googleText}>Login</Text>
                       </Link>
                       <Text style={tw`my-2 text-center`}>Or</Text>
