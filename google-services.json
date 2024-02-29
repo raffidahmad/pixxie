@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "695084823206",
+    "project_id": "pixxie-barber-app",
+    "storage_bucket": "pixxie-barber-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695084823206:android:e5202e8d6bde8f59807a67",
+        "android_client_info": {
+          "package_name": "bi.vanguard.pixxie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695084823206-glc7fgkivi273as0b0imrlq3v0lel9d5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bi.vanguard.pixxie",
+            "certificate_hash": "a410d123c47ba8f99626b9586d798c96b38f558a"
+          }
+        },
+        {
+          "client_id": "695084823206-senlghocbomavuiqirsrn251fjke1jja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bi.vanguard.pixxie",
+            "certificate_hash": "42e050292dbe4ff85f09e511aa91b5a4999fc242"
+          }
+        },
+        {
+          "client_id": "695084823206-hnb3buc9vo6dur1b7ioai9kpo0rrvt0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0uJR3ZNepYfugvMIwfbGsyEZK8EkXS_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695084823206-hnb3buc9vo6dur1b7ioai9kpo0rrvt0j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

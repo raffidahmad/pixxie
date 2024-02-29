@@ -7,6 +7,8 @@ export type User = {
   email: string;
   phoneNumber?: string;
   home?: LatLng;
+  pushToken?: string;
+  address: string;
 };
 
 export type Job = {
@@ -38,6 +40,7 @@ export type Barber = {
   currentLocation?: LatLng;
   distance?: number;
   rating?: number;
+  pushToken?: string;
 };
 
 export type Service = {
@@ -45,4 +48,15 @@ export type Service = {
   imageURL: string;
   price: number;
   name: string;
+};
+
+export type JobRequest = {
+  customer: User;
+  time: string;
+  services: Service[];
+  isBookingForChild?: boolean;
+  noOfChildren?: number;
+  barbers: Barber[];
+  accepted: boolean;
+  date: string;
 };

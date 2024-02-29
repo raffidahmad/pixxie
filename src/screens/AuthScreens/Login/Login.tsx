@@ -1,19 +1,26 @@
 import { useState } from 'react';
-import { Text, View, StatusBar, TouchableOpacity, TextInput, Image } from 'react-native';
-import { MoveLeft, Mail, LockKeyhole, EyeOff } from 'lucide-react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Text, View, StatusBar, TouchableOpacity, TextInput } from 'react-native';
+import { Mail, LockKeyhole, EyeOff } from 'lucide-react-native';
 
-import googleIcon from '@/assets/images/google.png';
 import { GlobalStyle, LoginStyle } from '@/styles';
 
 import Buttons from '@/components/Buttons';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
+import { signInWithEmail } from '@/api/firestore/auth';
+import { useSession } from '@/context/ctx';
+import { Barber } from '@/types/Common.types';
+import { ALERT_TYPE, Toast } from 'react-native-alert-notification';
+import tw from 'twrnc';
+import { useRecoilState } from 'recoil';
+import { isLoading } from '@/recoil/atoms';
+import OverlayLoader from '@/components/OverlayLoader';
+import GoogleSignIn from '@/components/GoogleSignIn';
 
 const Login = () => {
+  const { signIn } = useSession();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({ email: '', password: '' });
-
-  const navigation: any = useNavigation();
+  const [, setIsLoaderActive] = useRecoilState(isLoading);
 
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -47,29 +54,42 @@ const Login = () => {
     return isValid;
   };
 
-  const navigate = () => {
+  const showError = (message: string) => {
+    setIsLoaderActive(false);
+    Toast.show({
+      type: ALERT_TYPE.DANGER,
+      title: 'Error',
+      textBody: 'There was an error logging in. Please try again.'
+    });
+  };
+
+  const handleLogin = () => {
     if (validateForm()) {
-      navigation.navigate('Home');
-      setFormData({ email: '', password: '' });
-      setErrors({ email: '', password: '' });
+      setIsLoaderActive(true);
+      signInWithEmail(formData.email, formData.password, showError).then((user) => {
+        if (user) {
+          signIn(user as Barber);
+          setIsLoaderActive(false);
+          if(user?.home) {
+            router.replace('/');
+          } else {
+            router.push('/signup-location');
+          }
+        } else {
+          setIsLoaderActive(false);
+          showError('There was an error logging in. Please try again.');
+        }
+      });
     }
   };
-  const handleMoveLeft = () => {
-    navigation.goBack(); // Navigate back to the previous screen
-  };
+
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <StatusBar backgroundColor='#ffff' />
       <View style={GlobalStyle.containers}>
-        <View>
+        <View style={tw`mt-10`}>
           <View style={LoginStyle.Welcome}>
-            <TouchableOpacity style={{ marginBottom: 24 }} onPress={handleMoveLeft}>
-              <Text>
-                <MoveLeft size={24} color={'#212121'} />
-              </Text>
-            </TouchableOpacity>
             <Text style={LoginStyle.welcomeText}>Welcome back</Text>
-            <Text style={LoginStyle.Subtext}>Let’s find a barber for you!</Text>
           </View>
         </View>
         <View style={LoginStyle.center}>
@@ -105,11 +125,11 @@ const Login = () => {
           </View>
           <Text style={{ color: 'red' }}>{errors.password}</Text>
           <View>
-            <Buttons title={'Login'} onClick={navigate} />
+            <Buttons title={'Login'} onClick={handleLogin} />
           </View>
 
           <View style={{ marginBottom: 10 }}>
-            <Text style={LoginStyle.Subtext}>Already have an account?</Text>
+            <Text style={LoginStyle.Subtext}>Don't have an account?</Text>
           </View>
 
           <Link href='/sign-up' style={LoginStyle.google}>
@@ -122,10 +142,7 @@ const Login = () => {
             <View style={LoginStyle.emptyBox}></View>
           </View>
 
-          <TouchableOpacity style={LoginStyle.google}>
-            <Image source={googleIcon} style={{ width: 20, height: 20, marginRight: 10 }} />
-            <Text style={LoginStyle.googleText}>Continue with google</Text>
-          </TouchableOpacity>
+          <GoogleSignIn signIn={signIn} />
         </View>
       </View>
     </View>

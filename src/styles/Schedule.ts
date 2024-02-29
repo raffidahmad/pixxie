@@ -1,6 +1,6 @@
-import { Rows } from 'lucide-react-native';
 import { StyleSheet } from 'react-native';
-export const SheduleStyle = StyleSheet.create({
+
+export const ScheduleStyle = StyleSheet.create({
   Now: {
     backgroundColor: '#192A53',
     paddingVertical: 10,
@@ -58,7 +58,7 @@ export const SheduleStyle = StyleSheet.create({
     color: '#616161',
     flex: 1
   },
-  shdeuleBox: {
+  scheduleBox: {
     marginVertical: 20
   },
   childBox: {
@@ -73,12 +73,22 @@ export const SheduleStyle = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 30,
-    marginRight: 5
+    marginRight: 5,
+    color: '#192A53'
+  },
+  childbtnFilled: {
+    color: '#fff',
+    borderWidth: 1,
+    borderColor: '#192A53',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 30,
+    marginRight: 5,
+    backgroundColor: '#192A53'
   },
   childText: {
     fontSize: 16,
     fontFamily: 'UrbanistSemiBold',
-    fontWeight: '700',
-    color: '#192A53'
+    fontWeight: '700'
   }
 });

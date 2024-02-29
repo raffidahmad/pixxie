@@ -1,14 +1,8 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { Controller } from "react-hook-form";
-import { LoginStyle } from "@/styles/LoginStyle";
-import { Eye, EyeOff } from "lucide-react-native"; // Import icons for visibility toggle
+import React from 'react';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Controller } from 'react-hook-form';
+import { LoginStyle } from '@/styles/LoginStyle';
+import { Eye, EyeOff } from 'lucide-react-native'; // Import icons for visibility toggle
 
 interface FormInputProps {
   control: any; // Adjust the type as per your setup
@@ -35,10 +29,7 @@ const FormInput: React.FC<FormInputProps> = ({
     <Controller
       control={control}
       name={name}
-      render={({
-        field: { value, onChange, onBlur },
-        fieldState: { error },
-      }) => (
+      render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
         <View>
           <View style={LoginStyle.inpBox}>
             {iconComponent && <View>{iconComponent}</View>}
@@ -53,11 +44,7 @@ const FormInput: React.FC<FormInputProps> = ({
             {isPassword && (
               <TouchableOpacity onPress={togglePasswordVisibility}>
                 <Text>
-                  {showPassword ? (
-                    <Eye size={16} color={"#212121"} />
-                  ) : (
-                    <EyeOff size={16} color={"#212121"} />
-                  )}
+                  {showPassword ? <Eye size={16} color={'#212121'} /> : <EyeOff size={16} color={'#212121'} />}
                 </Text>
               </TouchableOpacity>
             )}
@@ -73,26 +60,26 @@ export default FormInput;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%'
   },
   icon: {
-    marginRight: 10,
+    marginRight: 10
     // Adjust your icon styles here
   },
   input: {
     borderWidth: 1,
-    borderColor: "#000",
+    borderColor: '#000',
     flex: 1, // Take up remaining space
-    textAlign: "left",
+    textAlign: 'left',
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 10
   },
   errorMessage: {
-    color: "red",
-    alignSelf: "stretch",
+    color: 'red',
+    alignSelf: 'stretch',
     fontSize: 12,
-    marginLeft: 12,
-  },
+    marginLeft: 12
+  }
 });

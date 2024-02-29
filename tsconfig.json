@@ -8,28 +8,11 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"],
+      "@firebase/auth": ["./node_modules/@firebase/auth/dist/index.rn.d.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "example"
-  ],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "tailwind.config.js"
-  ],
-  "typeRoots": [
-    "node_modules/@types",
-    "types"
-  ]
+  "exclude": ["node_modules", "build", "dist", "scripts", "acceptance-tests", "webpack", "jest", "example"],
+  "include": ["**/*.ts", "**/*.tsx", "tailwind.config.js"],
+  "typeRoots": ["node_modules/@types", "types"]
 }

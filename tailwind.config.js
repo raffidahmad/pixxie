@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#192A53',
-      },
+        primary: '#192A53'
+      }
     }
   },
   plugins: ['prettier-plugin-tailwindcss']

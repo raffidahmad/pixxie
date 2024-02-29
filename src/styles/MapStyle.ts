@@ -56,17 +56,6 @@ export const MapStyle = StyleSheet.create({
     width: '100%',
     backgroundColor: 'white'
   },
-  request: {
-    backgroundColor: 'white',
-    paddingHorizontal: 24,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    borderTopRightRadius: 33,
-    borderTopLeftRadius: 33,
-    zIndex: 1000
-  },
 
   ScrollHeader: {
     display: 'flex',

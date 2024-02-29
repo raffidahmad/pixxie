@@ -1,16 +1,18 @@
 import React from 'react';
 import { useStorageState } from '@/hooks/useStorageState';
+import { User } from '@/types/Common.types';
+import { signOutFirebase } from '@/api/firestore/auth';
 
 const AuthContext = React.createContext<{
-  signIn: () => void;
+  signIn: (barber: User) => void;
   signOut: () => void;
-  session?: string | null;
+  session: User | null;
   isLoading: boolean;
 }>({
   signIn: () => null,
   signOut: () => null,
   session: null,
-  isLoading: false,
+  isLoading: false
 });
 
 // This hook can be used to access the user info.
@@ -31,16 +33,19 @@ export function SessionProvider(props: React.PropsWithChildren) {
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => {
+        signIn: (user: User) => {
           // Perform sign-in logic here
-          setSession('xxx');
+          const stringifiedUser = JSON.stringify(user);
+          setSession(stringifiedUser);
         },
         signOut: () => {
+          signOutFirebase();
           setSession(null);
         },
-        session,
-        isLoading,
-      }}>
+        session: session ? JSON.parse(session) : null,
+        isLoading
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
